@@ -2,11 +2,11 @@ DROP TABLE IF EXISTS tasks;
 
 CREATE TABLE tasks (
     id SERIAL PRIMARY KEY,
-    title VARCHAR (255),
+    title VARCHAR (255) NOT NULL,
     description text,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    completed boolean
+    created_at timestamp without time zone default now() NOT NULL,
+    updated_at timestamp without time zone default now() NOT NULL,
+    completed boolean NOT NULL
 );
 
 ALTER TABLE tasks
@@ -62,6 +62,10 @@ FROM tasks
 WHERE title = 'mistake 1';
 
 SELECT title, description
+FROM tasks
+WHERE title LIKE '%mistake%';
+
+DELETE
 FROM tasks
 WHERE title LIKE '%mistake%';
 
